@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit User</title>
+    <style>
+        .logout {
+            float: right;
+            margin: 10px;
+        }
+        button {
+            margin-top: 5px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select {
+            margin-bottom: 15px;
+            width: 50%;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logout Button -->
+    <div>
+        <a class="logout" th:href="@{/logout}">
+            <button>Logout</button>
+        </a>
+    </div>
+
+    <h1>Edit User</h1>
+
+    <!-- Back to Manage Users -->
+    <a th:href="@{/admin/manage-users}">
+        <button>Back to Manage Users</button>
+    </a>
+
+    <!-- Edit User Form -->
+    <form th:action="@{/admin/save-user}" method="post">
+        <input type="hidden" name="id" th:value="${user.id}">
+        <input type="hidden" name="registrationDate" th:value="${user.registrationDate}">
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" th:value="${user.email}" required>
+
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" th:value="${user.fullName}" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" th:value="${user.password}" placeholder="Leave blank to keep current password">
+
+        <label for="roleId">Role:</label>
+        <select id="roleId" name="roleId" required>
+            <option th:each="role : ${roles}" 
+                    th:value="${role.roleId}" 
+                    th:text="${role.name}" 
+                    th:selected="${role.roleId == user.role.roleId}">
+            </option>
+        </select>
+
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>

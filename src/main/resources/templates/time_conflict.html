@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Time Conflict</title>
+    <style>
+        .logout {
+            float: right;
+            margin-right: 20px;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <a class="logout" th:href="@{/logout}">
+            <button>Logout</button>
+        </a>
+    </div>
+    <h1>Time Conflict</h1>
+    <p>You have a time conflict with another course.</p>
+    <a href="/student/dashboard"><button>Back to Dashboard</button></a>
+</body>
+</html>

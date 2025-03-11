@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+    <style>
+        button {
+            margin-right: 10px;
+        }
+        table {
+            width: 80%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            text-align: center;
+            padding: 10px;
+        }
+        .logout {
+            float: right;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <a class="logout" th:href="@{/logout}">
+            <button>Logout</button>
+        </a>
+    </div>
+    <h1>Welcome, Admin</h1>
+    
+    <div>
+        <a href="/admin/manage-users"><button>View and Manage Users</button></a>
+        <a href="/admin/approved-courses"><button>View Approved Courses</button></a>
+        <a href="/admin/rejected-courses"><button>View Rejected Courses</button></a>
+    </div>
+
+    <h2>Pending Courses</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Faculty</th>
+                <th>Seats</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="course : ${pendingCourses}">
+                <td th:text="${course.name}"></td>
+                <td th:text="${course.faculty.user.fullName}"></td>
+                <td th:text="${course.maxSeats}"></td>
+                <td th:text="${course.status}"></td>
+                <td>
+                    <form th:action="@{/admin/approve-course}" method="post" style="display:inline;">
+                        <input type="hidden" th:name="courseId" th:value="${course.id}" />
+                        <button type="submit">Approve</button>
+                    </form>
+                    <form th:action="@{/admin/reject-course}" method="post" style="display:inline;">
+                        <input type="hidden" th:name="courseId" th:value="${course.id}" />
+                        <button type="submit">Reject</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

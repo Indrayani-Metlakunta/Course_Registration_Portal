@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Course Successfully Added</title>
+</head>
+<body>
+    <div>
+        <a th:href="@{/user/logout}" style="float: right; color: red; text-decoration: none;">Logout</a>
+    </div>
+    <h1>Course Successfully Added!</h1>
+
+    <h2>Course Details</h2>
+    <table border="1" style="width: 100%; border-collapse: collapse;">
+        <tr>
+            <th>Course Name</th>
+            <td th:text="${course.name}">Course Name</td>
+        </tr>
+        <tr>
+            <th>Day</th>
+            <td th:text="${course.day}">Day</td>
+        </tr>
+        <tr>
+            <th>From Time</th>
+            <td th:text="${course.fromTime}">From Time</td>
+        </tr>
+        <tr>
+            <th>To Time</th>
+            <td th:text="${course.toTime}">To Time</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td th:text="${course.description}">Description</td>
+        </tr>
+        <tr>
+            <th>Requirements</th>
+            <td th:text="${course.requirements}">Requirements</td>
+        </tr>
+        <tr>
+            <th>Books Needed</th>
+            <td th:text="${course.booksNeeded}">Books Needed</td>
+        </tr>
+        <tr>
+            <th>Seats</th>
+            <td th:text="${course.maxSeats}">Seats</td>
+        </tr>
+        <tr>
+            <th>Lecture Type</th>
+            <td th:text="${course.lectureType}">Lecture Type</td>
+        </tr>
+        <tr>
+            <th>Department</th>
+            <td th:text="${course.department}">Department</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td th:text="${course.status}">Pending</td>
+        </tr>
+    </table>
+
+    <br>
+    <a th:href="@{/faculty/dashboard}" style="text-decoration: none; color: blue;">Go Back to Dashboard</a>
+</body>
+</html>

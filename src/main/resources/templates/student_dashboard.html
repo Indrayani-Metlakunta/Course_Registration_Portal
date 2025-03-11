@@ -1,0 +1,72 @@
+<body>
+    <div class="container mt-4">
+        <!-- Logout Button -->
+        <div class="text-end">
+            <a class="btn btn-secondary" th:href="@{/logout}">Logout</a>
+        </div>
+		<!-- Profile Update Link -->
+		<div class="mb-4">
+            <a class="btn btn-info" th:href="@{/student/update-profile}">Update Profile</a>
+        </div>
+
+        <h1>Student Dashboard</h1>
+
+        <!-- Display messages -->
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+        <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+
+        <h2>Available Courses</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Description</th>
+                    <th>Class Timings</th>
+                    <th>Faculty Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="course : ${availableCourses}">
+                    <td th:text="${course.name}"></td>
+                    <td th:text="${course.description}"></td>
+                    <td th:text="${course.fromTime} + '-' + ${course.toTime}"></td>
+                    <td th:text="${course.faculty.user.fullName}"></td>
+                    <td>
+                        <form th:action="@{/student/enroll}" method="post">
+                            <input type="hidden" name="courseId" th:value="${course.id}">
+                            <button class="btn btn-primary" type="submit">Enroll</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Enrolled Courses</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Description</th>
+                    <th>Class Timings</th>
+                    <th>Faculty Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="course : ${enrolledCourses}">
+                    <td th:text="${course.name}"></td>
+                    <td th:text="${course.description}"></td>
+                    <td th:text="${course.fromTime} + '-' + ${course.toTime}"></td>
+                    <td th:text="${course.faculty.user.fullName}"></td>
+                    <td>
+                        <form th:action="@{/student/drop}" method="post">
+                            <input type="hidden" name="courseId" th:value="${course.id}">
+                            <button class="btn btn-danger" type="submit">Drop</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>

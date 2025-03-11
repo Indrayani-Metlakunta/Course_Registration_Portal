@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Duplicate Enrollment</title>
+</head>
+<body>
+    <div>
+        <a th:href="@{/user/logout}" style="float: right; color: red; text-decoration: none;">Logout</a>
+    </div>
+    <h1>Duplicate Enrollment</h1>
+    <p>You are already enrolled in this course.</p>
+    <a th:href="@{/student/dashboard}">Back to Dashboard</a>
+</body>
+</html>

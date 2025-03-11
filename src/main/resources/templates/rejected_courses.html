@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rejected Courses</title>
+    <style>
+        .logout {
+            float: right;
+            margin: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            text-align: center;
+            padding: 10px;
+        }
+        button {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logout Button -->
+    <div>
+        <a class="logout" th:href="@{/logout}">
+            <button>Logout</button>
+        </a>
+    </div>
+
+    <h1>Rejected Courses</h1>
+    <a href="/admin/dashboard"><button>Back to Dashboard</button></a>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Faculty</th>
+                <th>Seats</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="course : ${courses}">
+                <td th:text="${course.name}"></td>
+                <td th:text="${course.faculty.user.fullName}"></td>
+                <td th:text="${course.maxSeats}"></td>
+                <td th:text="${course.description}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
